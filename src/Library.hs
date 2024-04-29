@@ -162,5 +162,3 @@ sumarImpar b = if odd b then b+1  else b
 
 calcular :: (Number,Number) -> (Number,Number)
 calcular (a,b)= (duplicarPar a, sumarImpar b)
-
-hola
