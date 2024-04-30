@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Use foldr" #-}
 module Library where
 import PdePreludat
 
@@ -162,3 +164,21 @@ sumarImpar b = if odd b then b+1  else b
 
 calcular :: (Number,Number) -> (Number,Number)
 calcular (a,b)= (duplicarPar a, sumarImpar b)
+
+----------------------------------{-Modulo 4-}-------------------------------------
+
+sumaLista :: [Number] -> Number
+sumaLista [] = 0
+sumaLista (x:xs) = x + sumaLista xs
+
+frecuenciaCardiaca :: [Number]
+frecuenciaCardiaca = [80, 100, 120, 128, 130, 123, 125]
+
+promedioFrecuenciaCardiaca :: Number
+promedioFrecuenciaCardiaca = sumaLista frecuenciaCardiaca / length frecuenciaCardiaca
+
+frecuenciaCardiacaMinuto :: Number -> Number
+frecuenciaCardiacaMinuto minuto = frecuenciaCardiaca !! (minuto/10)
+
+frecuenciasHastaMomento :: Number -> [Number]
+frecuenciasHastaMomento minuto = take (minuto/10+1) frecuenciaCardiaca
