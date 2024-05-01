@@ -22,9 +22,9 @@ area base altura = base * altura
 
 esBisiesto :: Number -> Bool
 esBisiesto anio
-    |esMultiploDe 400 anio = True
-    |esMultiploDe 4 anio && not(esMultiploDe 100 anio) = True
-    |otherwise = False
+ |esMultiploDe 400 anio = True
+ |esMultiploDe 4 anio && not(esMultiploDe 100 anio) = True
+ |otherwise = False
 
 celsiusToFahr :: Number -> Number
 celsiusToFahr celsius = celsius* 9/5 + 32
@@ -54,8 +54,8 @@ diasNormales num1 num2 num3 = not(diasParejos num1 num2 num3) && not(diasLocos n
 
 pesoPino :: Number -> Number
 pesoPino altura
-    | altura<=300 = altura*3
-    | otherwise = 900 + (altura-300)*2
+ | altura<=300 = altura*3
+ | otherwise = 900 + (altura-300)*2
 
 esPesoUtil :: Number -> Bool
 esPesoUtil peso = peso >= 400 && peso <= 1000
@@ -116,9 +116,10 @@ aplicar :: (a->b,a->c) -> a -> (b,c)
 aplicar (f, g) numero = (f numero, g numero)
 
 cuentaBizarra :: (Number,Number) -> Number
-cuentaBizarra (a,b) | a > b = a + b
-                    | b > a + 10 = b - a 
-                    | otherwise = a * b
+cuentaBizarra (a,b)
+ | a > b = a + b
+ | b > a + 10 = b - a 
+ | otherwise = a * b
 
 
 esNotaBochazo :: Number -> Bool
@@ -203,7 +204,11 @@ sumarNumerosDeLista [] = 0
 sumarNumerosDeLista (x:xs) = x + sumarNumerosDeLista xs
 
 cuandoHabloMasMinutos :: String
-cuandoHabloMasMinutos | (sumarNumerosDeLista.snd.fst) duracionLlamadas > (sumarNumerosDeLista.snd.snd) duracionLlamadas = (fst.fst) duracionLlamadas
-                      | otherwise = (fst.snd) duracionLlamadas
+cuandoHabloMasMinutos
+ | (sumarNumerosDeLista.snd.fst) duracionLlamadas > (sumarNumerosDeLista.snd.snd) duracionLlamadas = (fst.fst) duracionLlamadas
+ | otherwise = (fst.snd) duracionLlamadas
 
-
+cuandoHizoMasLlamadas :: String
+cuandoHizoMasLlamadas
+ | (length.snd.fst) duracionLlamadas > (length.snd.snd) duracionLlamadas = (fst.fst) duracionLlamadas
+ | otherwise = (fst.snd) duracionLlamadas
