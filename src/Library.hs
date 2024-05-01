@@ -41,6 +41,7 @@ mcm a b = (a*b)/gcd a b
 dispersion :: Number -> Number -> Number -> Number
 dispersion num1 num2 num3 = maximum [num1, num2, num3] - minimum [num1, num2, num3]
 
+
 diasParejos :: Number -> Number -> Number -> Bool
 diasParejos num1 num2 num3 = dispersion num1 num2 num3 < 30
 
@@ -49,6 +50,7 @@ diasLocos num1 num2 num3 = dispersion num1 num2 num3 > 100
 
 diasNormales :: Number -> Number -> Number -> Bool
 diasNormales num1 num2 num3 = not(diasParejos num1 num2 num3) && not(diasLocos num1 num2 num3)
+
 
 pesoPino :: Number -> Number
 pesoPino altura
@@ -118,6 +120,7 @@ cuentaBizarra (a,b) | a > b = a + b
                     | b > a + 10 = b - a 
                     | otherwise = a * b
 
+
 esNotaBochazo :: Number -> Bool
 esNotaBochazo numero = numero < 6
 
@@ -153,6 +156,7 @@ fueARecuperar (a,b) = a /= -1 || b /= -1
 recuperoDeGusto :: ((Number,Number),(Number,Number)) -> Bool
 recuperoDeGusto ((a,b),(c,d)) = promociono (a,b) && fueARecuperar (c,d)
 
+
 esMayorDeEdad :: (String,Number) -> Bool
 esMayorDeEdad = (> 21) . snd
 
@@ -182,3 +186,24 @@ frecuenciaCardiacaMinuto minuto = frecuenciaCardiaca !! (minuto/10)
 
 frecuenciasHastaMomento :: Number -> [Number]
 frecuenciasHastaMomento minuto = take (minuto/10+1) frecuenciaCardiaca
+
+
+concatenarLista :: [String] -> String
+concatenarLista [] = ""
+concatenarLista (x:xs) = x ++ concatenarLista xs
+
+esCapicua :: [String] -> Bool
+esCapicua listaString = concatenarLista listaString == (reverse.concatenarLista) listaString
+
+
+duracionLlamadas = (("horarioReducido",[20,10,25,15]),("horarioNormal",[10,5,8,2,9,10]))
+
+sumarNumerosDeLista :: [Number] -> Number
+sumarNumerosDeLista [] = 0
+sumarNumerosDeLista (x:xs) = x + sumarNumerosDeLista xs
+
+cuandoHabloMasMinutos :: String
+cuandoHabloMasMinutos | (sumarNumerosDeLista.snd.fst) duracionLlamadas > (sumarNumerosDeLista.snd.snd) duracionLlamadas = (fst.fst) duracionLlamadas
+                      | otherwise = (fst.snd) duracionLlamadas
+
+
